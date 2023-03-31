@@ -50,5 +50,6 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           automatic_release_tag: ${{ steps.current-time.outputs.formattedTime }}
+          prerelease: false
           title: ${{ steps.current-time.outputs.formattedTime }}
           files: C:\Workspace.zip
