@@ -37,7 +37,7 @@ jobs:
         run: echo "msys2\msys2_shell -defterm -no-start -ucrt64 -here ./VSCode/bin/code workspace" > C:\Workspace\open.cmd
 
       - name: Pack
-        run: 7z a Workspace.zip C:\Workspace -o"C:\"
+        run: 7z a C:\Workspace.zip C:\Workspace
 
       - name: Get current time
         uses: 1466587594/get-current-time@v2
