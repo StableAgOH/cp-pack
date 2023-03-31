@@ -33,8 +33,19 @@ jobs:
       - name: Create Open Script
         run: echo "msys2\msys2_shell -defterm -no-start -ucrt64 -here ./VSCode/bin/code workspace" > C:\Workspace\open.cmd
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
+      - name: Pack
+        run: 7z a Workspace.zip C:\Workspace -o"C:\"
+
+      - name: Get current time
+        uses: 1466587594/get-current-time@v2
+        id: current-time
         with:
-          path: C:\Workspace
-          if-no-files-found: error
+          format: YYYYMMDDTHHmmss
+          utcOffset: +08:00
+
+      - uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          automatic_release_tag: ${{ steps.current-time.outputs.formattedTime }}
+          title: ${{ steps.current-time.outputs.formattedTime }}
+          files: C:\Workspace.zip
