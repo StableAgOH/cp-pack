@@ -32,7 +32,12 @@ jobs:
           .\pacman -S mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-gdb mingw-w64-ucrt-x86_64-python --noconfirm
 
       - name: Setup workspace
-        run: cp .vscode,open.cmd (mkdir C:\Workspace\workspace)
+        run: cp .vscode (mkdir C:\Workspace\workspace) -Recurse
+
+      - name: Copy Open Script
+        run: cp open.cmd C:\Workspace
+
+      - run: ls C:\Workspace -Recurse
 
       - name: Pack
         run: 7z a -mx9 -t7z C:\Workspace.7z C:\Workspace
