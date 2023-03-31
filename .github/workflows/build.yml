@@ -27,7 +27,7 @@ jobs:
         run: |
           git clone https://github.com/StableAgOH/oi-workspace.git
           cd oi-workspace
-          cp .vscode\launch.json,.vscode\tasks.json C:\Workspace\workspace\.vscode -Recurse -Force
+          cp .vscode\launch.json,.vscode\tasks.json (mkdir C:\Workspace\workspace\.vscode)
           cp diff* C:\Workspace\workspace
 
       - name: Create Open Script
