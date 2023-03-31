@@ -1,0 +1,40 @@
+name: Build
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Setup VSCode
+        run: |
+          curl -sSL https://update.code.visualstudio.com/latest/win32-x64-archive/stable -o VSCode.zip
+          7z x VSCode.zip -o"C:\Workspace\VSCode"
+          cd C:\Workspace\VSCode
+          mkdir data
+          .\bin\code --install-extension ms-vscode.cpptools
+          .\bin\code --install-extension ms-python.python
+
+      - name: Setup MSYS2
+        run:
+          curl -sSL https://github.com/msys2/msys2-installer/releases/download/nightly-x86_64/msys2-x86_64-latest.exe -o msys2-installer.exe
+          .\msys2-installer in --am -c -t C:\Workspace\msys2
+          cd C:\Workspace\msys2\usr\bin
+          .\pacman -S mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-gdb mingw-w64-ucrt-x86_64-python
+
+      - name: Setup oi-workspace
+        run: |
+          git clone https://github.com/StableAgOH/oi-workspace.git
+          cd oi-workspace
+          cp .vscode\launch.json,.vscode\tasks.json C:\Workspace\workspace\.vscode -Recurse
+          cp diff* C:\Workspace\workspace
+
+      - name: Create Open Script
+        run: echo "msys2\msys2_shell -defterm -no-start -ucrt64 -here ./VSCode/bin/code workspace" > open.cmd
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          path: C:\Workspace
+          if-no-files-found: error
