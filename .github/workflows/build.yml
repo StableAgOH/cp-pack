@@ -10,14 +10,19 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Setup VSCode
         run: |
           curl -sSL https://update.code.visualstudio.com/latest/win32-x64-archive/stable -o VSCode.zip
           7z x VSCode.zip -o"C:\Workspace\VSCode"
           cd C:\Workspace\VSCode
-          mkdir data
+          cp settings.json (mkdir \data\user-data\User)
+          .\bin\code --install-extension MS-CEINTL.vscode-language-pack-zh-hans
           .\bin\code --install-extension ms-vscode.cpptools
           .\bin\code --install-extension ms-python.python
+          .\bin\code --uninstall-extension ms-toolsai.jupyter
 
       - name: Setup MSYS2
         run: |
@@ -26,18 +31,11 @@ jobs:
           cd C:\Workspace\msys2\usr\bin
           .\pacman -S mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-gdb mingw-w64-ucrt-x86_64-python --noconfirm
 
-      - name: Setup oi-workspace
-        run: |
-          git clone https://github.com/StableAgOH/oi-workspace.git
-          cd oi-workspace
-          cp .vscode\launch.json,.vscode\tasks.json (mkdir C:\Workspace\workspace\.vscode)
-          cp diff* C:\Workspace\workspace
-
-      - name: Create Open Script
-        run: echo "msys2\msys2_shell -defterm -no-start -ucrt64 -here ./VSCode/bin/code workspace" > C:\Workspace\open.cmd
+      - name: Setup workspace
+        run: cp .vscode,open.cmd (mkdir C:\Workspace\workspace)
 
       - name: Pack
-        run: 7z a C:\Workspace.zip C:\Workspace
+        run: 7z a -mx9 -t7z C:\Workspace.7z C:\Workspace
 
       - name: Get current time
         uses: 1466587594/get-current-time@v2
@@ -50,4 +48,4 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.current-time.outputs.formattedTime }}
-          files: C:/Workspace.zip
+          files: C:/Workspace.7z

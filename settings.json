@@ -1,0 +1,14 @@
+{
+    "C_Cpp.autocompleteAddParentheses": true,
+    "editor.guides.bracketPairs": "active",
+    "editor.wordWrap": "on",
+    "explorer.confirmDelete": false,
+    "extensions.ignoreRecommendations": true,
+    "terminal.integrated.allowChords": false,
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.enableBell": true,
+    "terminal.integrated.enablePersistentSessions": false,
+    "workbench.editor.enablePreview": false,
+    "files.autoSave": "afterDelay"
+}

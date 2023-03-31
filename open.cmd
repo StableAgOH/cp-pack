@@ -1,0 +1,1 @@
+msys2\msys2_shell -defterm -no-start -ucrt64 -here ./VSCode/bin/code workspace

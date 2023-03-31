@@ -1,0 +1,54 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile",
+            "type": "cppbuild",
+            "command": "g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "-O2",
+                "-std=c++11",
+                "-Wall",
+                "-ftrapv"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "presentation": {
+                "focus": true,
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$gcc",
+        },
+        {
+            "label": "Compile for debug",
+            "type": "cppbuild",
+            "command": "g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "-std=c++11",
+                "-Wall",
+                "-ftrapv"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "presentation": {
+                "reveal": "silent",
+                "showReuseMessage": false,
+            },
+            "problemMatcher": "$gcc",
+        }
+    ]
+}
