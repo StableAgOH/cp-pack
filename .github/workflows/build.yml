@@ -17,12 +17,12 @@ jobs:
         run: |
           curl -sSL https://update.code.visualstudio.com/latest/win32-x64-archive/stable -o VSCode.zip
           7z x VSCode.zip -o"C:\Workspace\VSCode"
-          cd C:\Workspace\VSCode
-          cp settings.json (mkdir \data\user-data\User)
-          .\bin\code --install-extension MS-CEINTL.vscode-language-pack-zh-hans
-          .\bin\code --install-extension ms-vscode.cpptools
-          .\bin\code --install-extension ms-python.python
-          .\bin\code --uninstall-extension ms-toolsai.jupyter
+          cp settings.json (mkdir C:\Workspace\VSCode\data\user-data\User)
+          cd C:\Workspace\VSCode\bin
+          .\code --install-extension MS-CEINTL.vscode-language-pack-zh-hans
+          .\code --install-extension ms-vscode.cpptools
+          .\code --install-extension ms-python.python
+          .\code --uninstall-extension ms-toolsai.jupyter
 
       - name: Setup MSYS2
         run: |
