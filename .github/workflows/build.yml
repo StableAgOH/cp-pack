@@ -17,7 +17,7 @@ jobs:
           .\bin\code --install-extension ms-python.python
 
       - name: Setup MSYS2
-        run:
+        run: |
           curl -sSL https://github.com/msys2/msys2-installer/releases/download/nightly-x86_64/msys2-x86_64-latest.exe -o msys2-installer.exe
           .\msys2-installer in --am -c -t C:\Workspace\msys2
           cd C:\Workspace\msys2\usr\bin
