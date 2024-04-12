@@ -29,6 +29,7 @@ jobs:
           .\msys2-installer in --am -c -t C:\Workspace\msys2
           cd C:\Workspace\msys2\usr\bin
           .\pacman -S mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-gdb mingw-w64-ucrt-x86_64-python --noconfirm
+          .\pacman -Scc
 
       - name: Setup workspace
         run: cp .vscode (mkdir C:\Workspace\workspace) -Recurse
