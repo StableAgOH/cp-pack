@@ -22,7 +22,6 @@ jobs:
           .\code --install-extension MS-CEINTL.vscode-language-pack-zh-hans
           .\code --install-extension ms-vscode.cpptools
           .\code --install-extension ms-python.python
-          .\code --uninstall-extension ms-toolsai.jupyter
 
       - name: Setup MSYS2
         run: |
